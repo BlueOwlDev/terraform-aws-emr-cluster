@@ -16,15 +16,15 @@ variable "use_existing_managed_slave_security_group" {
   default     = false
 }
 
-variable "use_existing_additional_master_security_group" {
+variable "use_existing_additional_master_security_groups" {
   type        = bool
-  description = "If set to `true`, will use variable `additional_master_security_group` using an existing security group that was created outside of this module"
+  description = "If set to `true`, will use variable `additional_master_security_groups` using existing security groups that were created outside of this module"
   default     = false
 }
 
-variable "use_existing_additional_slave_security_group" {
+variable "use_existing_additional_slave_security_groups" {
   type        = bool
-  description = "If set to `true`, will use variable `additional_slave_security_group` using an existing security group that was created outside of this module"
+  description = "If set to `true`, will use variable `additional_slave_security_groups` using existing security groups that were created outside of this module"
   default     = false
 }
 
@@ -46,16 +46,16 @@ variable "managed_slave_security_group" {
   description = "The name of the existing managed security group that will be used for EMR core & task nodes. If empty, a new security group will be created"
 }
 
-variable "additional_master_security_group" {
-  type        = string
-  default     = ""
-  description = "The name of the existing additional security group that will be used for EMR master node. If empty, a new security group will be created"
+variable "additional_master_security_groups" {
+  type        = list(string)
+  default     = []
+  description = "The names of existing additional security groups that will be used for EMR master node. If empty, a new security group will be created"
 }
 
-variable "additional_slave_security_group" {
-  type        = string
-  default     = ""
-  description = "The name of the existing additional security group that will be used for EMR core & task nodes. If empty, a new security group will be created"
+variable "additional_slave_security_groups" {
+  type        = list(string)
+  default     = []
+  description = "The names of existing additional security groups that will be used for EMR core & task nodes. If empty, a new security group will be created"
 }
 
 variable "service_access_security_group" {
